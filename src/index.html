@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css">
+    <title>Weather</title>
+</head>
+<body>
+    <div id="wrapper" class="wrapper min-h-screen w-full bg-white ">
+        <!-- Navbar startss here  -->
+        <nav class="navbar w-full flex flex-col gap-2 justify-center items-center p-5 text-center flex-nowrap bg-blue-900">
+            <div class="logo flex  w-full max-w-[550px] justify-center">
+                <p class="text-[2.5rem] font-medium text-white p-2 bgamber-50 ">WEATHER</p>
+            </div>
+            <div  class="searchbox w-full max-w-[550px] flex flex-row gap-1 items-center justify-center p-1 flex-wrap sm:flex-nowrap  bg-mber-300  ">
+                <input id="input" type="text" placeholder="Enter City " class="bg-[#f2f2f2] w-[80%] sm:w-[50%] h-[42px] p-3 text-[1.2rem] shadow-2xl border border-transparent rounded-[5px] focus:outline-blue-500 focus:border-blue-500">
+                <button id="search-btn" type="submit" class="w-fit h-fit p-0 m-0"><img src="/assets/search (1).png" alt="" class="w-[50px] h-[50px] p-1 cursor-pointer opacity-[100%] hover:opacity-[95%]"></button>
+                <button id="loactionbtn" type="submit" class= "h-[45px] flex items-center justify-evenly p-2 w-[140px] cursor-pointer border-0 rounded-[5px] bg-[#f2f2f2] hover:bg-slate-300 mt-[5px] sm:mt-0 "> <img src="/assets/maps-and-flags.png" class="w-[20px] h-[20px]" alt=""> <p>Live Location</p> </button>
+            </div>
+        </nav>
+        <!-- Navbar ends here  -->
+         <!-- main tag starts  -->
+        <main class="w-full h-fit flex flex-col items-center justify-center  gap-3 p-4 ">
+            <!-- section 01 Starts here  -->
+             <!-- <div class="errorMessage min-h-screen bg-amber-200 font-medium text-center w-full text-[2rem] ">
+                Unable to Load! Try Refreshing the page
+             </div> -->
+             <section class="current-weather w-[90%] max-w-[1550px] h-fit flex flex-col sm:mt-[15px]">
+                <div id="topForMessage" class="top flex flex-col h-fit sm:flex-row justify-center sm:justify-between p-2 items-center text-white bg-blue-900 rounded-t-2xl  ">
+                    <div class="cityDetail flex flex-col h-full gap-1 text-left justify-evenly p-2 sm:pl-[60px] bg-aber-600 ">
+                        <p id="searchedCityName" class="text-[2.2rem] sm:text-[2.7rem]/[50px] font-medium ml-[-3px] ">Lahore</p>
+                        <p id="searchedregioncountry" class="text-[1rem]/[20px] font-light  ">Punjab, Pakistan</p>
+                        <p  id="currentDate" class="text-[1.2rem]/[25px] font-light">Monday, March 20</p>
+                    </div>
+                    <div class="temperature flex  h-fit items-center  justify-betwee p-3 gap-4 sm:pr-5 bg-aber-200 flex-row-reverse sm:flex-row">
+                        <div class="text-1 mb-[62px] mr-[10px] sm:flex justify-start items-start bg-amer-600 hidden  ">
+                            <p id="text" class="text-[1.2rem] font-light ">Overcast</p>
+                        </div>
+                        <div class="text bg-re-600 w-[150px] sm:w-fit ">
+                            <p id="currentTemperature" class="text-[2.8rem] sm:text-[3.1rem] font-medium">34°C</p>
+                            <p id="feelslike" class="text-[1.1rem] font-normal w-fit">Feels like 40°C</p>
+                        </div>
+                        <div class="img ">
+                            <img id="currentImg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[90px] h-[90px]">
+                        </div>
+                    </div>
+                </div>
+                <div id="bottom" class="bottom sm:flex-row  p-5 bg-[#dfdfdf] grid grid-cols-4 justify-between gap-2 rounded-b-2xl">
+                    <div class="humidity  rounded-[10px] col-start-1 col-end-3 p-2 sm:p-0  row-start-1 row-end-2 sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-1 w-full h-full flex justify-center gap-1 items-center text-center flex-col">
+                        <P class="text-[1.1rem] font-light text-black ">Humidity</P>
+                        <p id="humidity" class="text-[1.4rem] font-medium text-black">65%</p>
+                    </div>
+                    <div class="wind-kmp  rounded-[10px] col-start-3 col-end-5 p-2 sm:p-0  row-start-1 row-end-2 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-1 w-full h-full flex justify-center gap-1 items-center text-center flex-col">
+                        <p class="text-[1.1rem] font-light text-black ">Wind Speed</p>
+                        <p id="windspeed" class="text-[1.4rem] font-medium text-black">8mph</p>
+                    </div>
+                    <div class="wind-deg  rounded-[10px] col-start-1 col-end-3 p-2 sm:p-0  row-start-2 row-end-3 sm:col-start-3 sm:col-end-4 sm:row-start-1 sm:row-end-1 w-full h-full flex justify-center gap-1 items-center text-center flex-col">
+                        <p class="text-[1.1rem] font-light text-black ">Wind Degree</p>
+                        <p id="winddegree" class="text-[1.4rem] font-medium text-black">200</p>
+                    </div>
+                    <div class="air-us-epa  rounded-[10px] col-start-3 col-end-5 p-2 sm:p-0  row-start-2 row-end-3 sm:col-start-4 sm:col-end-5 sm:row-start-1 sm:row-end-1 w-full h-full flex justify-center gap-1 items-center text-center flex-col">
+                        <p class="text-[1.1rem] font-light text-black ">Air Quality (US-EPA-Index)</p>
+                        <p id="airquality" class="text-[1.4rem] font-medium text-black">4</p>
+                    </div>
+                </div>
+             </section>
+             <!-- Section 01 ends here  -->
+              <!-- section 02 starts here  -->
+             <section class="current-weather w-[90%] max-w-[1550px] h-fit flex flex-col lg:grid grid-cols-4 gap-2">
+                <!-- highest and lowest temp  -->
+                <div class="highest-lowest text-white bg-blue-900 p-2  col-start-1 col-end-2 flex flex-col justify-center items-center rounded-2xl">
+                    <div class="highest flex flex-row justify-evenly items-center text-center w-full sm:w-[50%] h-fit">
+                        <p class="text-[2rem] sm:text-[2.3rem] font-medium" >H</p>
+                        <p id="highest" class="text-[1.6rem] sm:text-[2rem] font-normal sm:ml-4" >40°C</p>
+                    </div>
+                    <div class="lowest flex flex-row justify-evenly items-center text-center w-full sm:w-[50%] h-fit">
+                        <p class="text-[2rem] sm:text-[2.3rem] font-medium" >L</p>
+                        <p id="lowest" class="text-[1.6rem] sm:text-[2rem] font-normal sm:ml-4 " >20°C</p>
+                    </div>
+                </div>
+                <!-- highest and lowest temp  -->
+                 <!-- Avg temp  -->
+                  <div class="avg-temp col col-start-2 col-end-3  text-white bg-blue-900 flex text-center justify-evenly items-center rounded-2xl p-4">
+                    <p class="text-[1.7rem] font-light flex w-[100%] text-center items-center justify-center h-full bg-mber-400 break-words shrink ">Average temperature<p>
+                    <p id="avgtemp" class="text-[1.7rem] flex font-medium w-[80%] text-center items-center justify-center h-full  bg-mber-600 sm:p-0">27°C</p>
+                  </div>
+                 <!-- Avg temp  -->
+                <!-- Sun div  -->
+                <div class="day-night  w-full  col-start-3 col-end-5 flex flex-col md:flex-row gap-3 rounded-2xl ">
+                    <div class="day flex flex-row justify-evenly w-full h-fit items-center opacity-[95%] bg-yellow-300 rounded-2xl p-3">
+                        <div class="sunrise text-center items-center justify-center flex flex-col p-1">
+                            <img src="/assets/sunrise.png" alt="" class="w-[70px] h-[70px]">
+                            <p class="font-normal">Sunrise</p>
+                            <p id="sunrise" class="font-medium text-[1.1rem]">05:14 AM</p>
+                        </div>
+                        <div class="sunrise text-center items-center justify-center flex flex-col p-1">
+                            <img src="/assets/sunset.png" alt="" class="w-[70px] h-[70px]">
+                            <p class="font-normal">Sunset</p>
+                            <p id="sunset" class="font-medium text-[1.1rem]">05:14 AM</p>
+                        </div>
+                        <div class="uv text-center hidden">
+                            <p class="text-[1.3rem] font-normal underline">UV </p>
+                            <p class="text-[1.3rem] font-normal ">1.9 </p>
+                        </div>
+                    </div>
+                    <!-- Sun div  -->
+                     <!-- Moon div  -->
+                    <div class="night flex flex-row justify-evenly w-full h-fit items-center bg-slate-500 rounded-2xl p-3">
+                        <div class="moonrise text-center items-center justify-center flex flex-col p-1">
+                            <img src="/assets/moonrise.png" alt="" class="w-[70px] h-[70px]">
+                            <p class="font-normal">Moonrise</p>
+                            <p id="moonrise" class="font-medium text-[1.1rem]">05:14 AM</p>
+                        </div>
+                        <div class="moonset text-center items-center justify-center flex flex-col p-1">
+                            <img src="/assets/moonset.png" alt="" class="w-[70px] h-[70px]">
+                            <p class="font-normal">Moonset</p>
+                            <p id="moonset" class="font-medium text-[1.1rem]">05:14 AM</p>
+                        </div>
+                        <div class="moon-phase text-center hidden">
+                            <p class="text-[1rem] sm:text-[1.2rem] underline">Moon Phase</p>
+                            <p class="text-[1rem] sm:text-[1.2rem]">Last Quater</p>
+                        </div>
+                    </div>
+                    <!-- Moon div  -->
+                </div>
+             </section>
+             <!-- Section 02 ends here  -->
+              <!-- section 03 starts  here -->
+              <section class="w-full max-w-[1400px] bg-ed-100 h-fit flex justify-center sm:justify-start items-center text-center pl-4 pt-1">
+                <h2 id="dateabovehours" class="text-[1.8rem] font-medium "></h2>
+              </section>
+              <!-- section 03 ends here  -->
+             <!-- Section 04 starts here (Hourly foreast) -->
+              <section class="w-[96%] max-w-[1400px] bg-pin-600 p-4 h-[230px] flex justify-center items-center ">
+                <div id="hourlyUpdateForecast" class="hourly-update h-full bg-whie w-full  flex flex-row  overflow-x-auto overflow-y-auto gap-2 items-center justify-evenly p-2 ">
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">12 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">1 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center pl-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">2 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">3 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">4 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">5 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">6 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">7 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">8 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">9 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">10 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">11 AM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">12 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">1 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">2 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">3 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">4 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">5 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">6 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">7 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">8 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">9 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">10 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                    <div id="hourDiv" class="hour min-w-[130px] bg-re-500 h-full flex flex-col justify-evenly items-center bg-blue-900 text-[#f2f2f2] rounded-[10px]">
+                        <p id="Htime" class="time text-[1.3rem] font-medium w-full text-center mb-[-10px] ">11 PM</p>
+                        <img id="Himg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="">
+                        <p id="Htemp" class="Htemp text-[1.3rem] bg-amer-200 font-medium mt-[-15px]">0°C</p>
+                        <p id="conditiontext" class="text-[1rem] bg-amer-200 font-light text-center p-[3px] ">Clear </p>
+                    </div>
+                </div>
+              </section>
+             <!-- Section 04 ends here  -->
+              <!-- section for forecast heading  -->
+              <section class="w-full max-w-[1400px] flex items-center justify-center sm:justify-start p-2 ">
+                <P class="text-[2rem] font-medium items-center text-center " >3 days Forecast</P>
+              </section>
+               <!-- section for forecast heading  -->
+             <!-- Section 05 start here (10 Days Forecast)  -->
+             <section class="w-[96%] max-w-[1400px] bg-pin-600 p-4 h-[300px] flex justify-center items-center ">
+                <div id="parentDivOfDays" class="ten-days-forecast h-full bg-white w-full  flex flex-row  overflow-x-auto gap-2 items-center justify-start sm:justify-center p-2 ">
+                    <div id="nextDiv" class="day min-w-[170px] bg-re-500 h-full flex flex-col justify-evenly items-center p- text-white bg-[#0e0e5f]  p-9 rounded-[10px]  ">
+                        <p id="nextday" class="time text-[1.5rem] font-medium w-full text-center mt-[5px] mb-[-5px] ">Thursday</p>
+                        <img id="nextimg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[75px] h-[75px]" >
+                        <p id="nexttemp" class="text-[1.5rem] font-medium">34°C</p>
+                        <p id="nextconditiontext" class="text-[1.1rem] font-normal  text-center">Sunny</p>
+                    </div>
+                    <div id="nextDiv" class="day min-w-[170px] bg-re-500 h-full flex flex-col justify-evenly items-center p- text-white bg-[#0e0e5f]  p-9 rounded-[10px]  ">
+                        <p id="nextday" class="time text-[1.5rem] font-medium w-full text-center mt-[5px] mb-[-5px] ">Thursday</p>
+                        <img id="nextimg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[75px] h-[75px]" >
+                        <p id="nexttemp" class="text-[1.5rem] font-medium">34°C</p>
+                        <p id="nextconditiontext" class="text-[1.1rem] font-normal  text-center">Sunny</p>
+                    </div>
+                    <div id="nextDiv" class="day min-w-[170px] bg-re-500 h-full flex flex-col justify-evenly items-center p- text-white bg-[#0e0e5f]  p-9 rounded-[10px]  ">
+                        <p id="nextday" class="time text-[1.5rem] font-medium w-full text-center mt-[5px] mb-[-5px] ">Thursday</p>
+                        <img id="nextimg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[75px] h-[75px]" >
+                        <p id="nexttemp" class="text-[1.5rem] font-medium">34°C</p>
+                        <p id="nextconditiontext" class="text-[1.1rem] font-normal  text-center">Sunny</p>
+                    </div>
+                    <!-- <div id="nextDiv" class="day min-w-[170px] bg-re-500 h-full flex flex-col justify-evenly items-center p- text-white bg-[#0e0e5f]  p-9 rounded-[10px]  ">
+                        <p id="nextday" class="time text-[1.5rem] font-medium w-full text-center mt-[5px] mb-[-5px] ">Thursday</p>
+                        <img id="nextimg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[75px] h-[75px]" >
+                        <p id="nexttemp" class="text-[1.5rem] font-medium">34°C</p>
+                        <p id="nextconditiontext" class="text-[1.1rem] font-normal  text-center">Sunny</p>
+                    </div>
+                    <div id="nextDiv" class="day min-w-[170px] bg-re-500 h-full flex flex-col justify-evenly items-center p- text-white bg-[#0e0e5f]  p-9 rounded-[10px]  ">
+                        <p id="nextday" class="time text-[1.5rem] font-medium w-full text-center mt-[5px] mb-[-5px] ">Thursday</p>
+                        <img id="nextimg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[75px] h-[75px]" >
+                        <p id="nexttemp" class="text-[1.5rem] font-medium">34°C</p>
+                        <p id="nextconditiontext" class="text-[1.1rem] font-normal  text-center">Sunny</p>
+                    </div>
+                    <div id="nextDiv" class="day min-w-[170px] bg-re-500 h-full flex flex-col justify-evenly items-center p- text-white bg-[#0e0e5f]  p-9 rounded-[10px]   ">
+                        <p id="nextday" class="time text-[1.5rem] font-medium w-full text-center mt-[5px] mb-[-5px]">Thursday</p>
+                        <img id="nextimg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[75px] h-[75px]" >
+                        <p id="nexttemp" class="text-[1.5rem] font-medium">34°C</p>
+                        <p id="nextconditiontext" class="text-[1.1rem] font-normal  text-center">Sunny</p>
+                    </div>
+                    <div id="nextDiv" class="day min-w-[170px] bg-re-500 h-full flex flex-col justify-evenly items-center p- text-white bg-[#0e0e5f]  p-9 rounded-[10px]  ">
+                        <p id="nextday" class="time text-[1.5rem] font-medium w-full text-center mt-[5px] mb-[-5px] ">Thursday</p>
+                        <img id="nextimg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[75px] h-[75px]" >
+                        <p id="nexttemp" class="text-[1.5rem] font-medium">34°C</p>
+                        <p id="nextconditiontext" class="text-[1.1rem] font-normal  text-center">Sunny</p>
+                    </div>
+                    <div id="nextDiv" class="day min-w-[170px] bg-re-500 h-full flex flex-col justify-evenly items-center p- text-white bg-[#0e0e5f]  p-9 rounded-[10px]  ">
+                        <p id="nextday" class="time text-[1.5rem] font-medium w-full text-center mt-[5px] mb-[-5px] ">Thursday</p>
+                        <img id="nextimg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[75px] h-[75px]" >
+                        <p id="nexttemp" class="text-[1.5rem] font-medium">34°C</p>
+                        <p id="nextconditiontext" class="text-[1.1rem] font-normal  text-center">Sunny</p>
+                    </div>
+                    <div id="nextDiv" class="day min-w-[170px] bg-re-500 h-full flex flex-col justify-evenly items-center p- text-white bg-[#0e0e5f]  p-9 rounded-[10px]  ">
+                        <p id="nextday" class="time text-[1.5rem] font-medium w-full text-center mt-[5px] mb-[-5px] ">Thursday</p>
+                        <img id="nextimg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[75px] h-[75px]" >
+                        <p id="nexttemp" class="text-[1.5rem] font-medium">34°C</p>
+                        <p id="nextconditiontext" class="text-[1.1rem] font-normal  text-center">Sunny</p>
+                    </div>
+                    <div id="nextDiv" class="day min-w-[170px] bg-re-500 h-full flex flex-col justify-evenly items-center p- text-white bg-[#0e0e5f]  p-9 rounded-[10px]  ">
+                        <p id="nextday" class="time text-[1.5rem] font-medium w-full text-center mt-[5px] mb-[-5px] ">Thursday</p>
+                        <img id="nextimg" src="https://cdn.weatherapi.com/weather/64x64/night/122.png" alt="" class="w-[75px] h-[75px]" >
+                        <p id="nexttemp" class="text-[1.5rem] font-medium">34°C</p>
+                        <p id="nextconditiontext" class="text-[1.1rem] font-normal  text-center">Sunny</p>
+                    </div> -->
+                </div>
+              </section>
+             <!-- Section 05 ends here  -->
+        </main>
+        <!-- main ends here  -->
+         <!-- footer starts here  -->
+          <footer class="w-full flex justify-center items-center p-12 text-center ">
+            <p class="text-[1.2rem] font-light text-slate-900">©2025 Weather Forecast | Data provided by Weather API</p>
+          </footer>
+         <!-- footer ends here  -->
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
